@@ -23,7 +23,7 @@ import com.commerce.f1shop.model.Item;
 
 @RestController
 //@CrossOrigin(origins = "http://localhost:4200")
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600, allowedHeaders = "*")
 @RequestMapping(path = "items")
 public class ItemController {
 
