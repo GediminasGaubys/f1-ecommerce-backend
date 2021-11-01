@@ -25,3 +25,9 @@ hs_err_pid*
 /.idea
 /.mvn
 /target
+.gitignore
+f1shop.iml
+HELP.md
+mvnw
+mvnw.cmd
+package-lock.json
