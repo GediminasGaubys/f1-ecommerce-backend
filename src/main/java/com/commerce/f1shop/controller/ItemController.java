@@ -22,7 +22,7 @@ import com.commerce.f1shop.model.Item;
 
 @RestController
 //@CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping(path = "items")
+// @RequestMapping(path = "items")
 public class ItemController {
 
     private byte[] bytes;
