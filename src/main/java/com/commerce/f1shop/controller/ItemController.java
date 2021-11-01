@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,7 @@ import com.commerce.f1shop.model.Item;
 
 @RestController
 //@CrossOrigin(origins = "http://localhost:4200")
-// @RequestMapping(path = "items")
+@RequestMapping(path = "items")
 public class ItemController {
 
     private byte[] bytes;
@@ -30,17 +31,24 @@ public class ItemController {
     @Autowired
     private ItemRepository itemRepository;
 
-    @GetMapping("/items")
+    @GetMapping("/")
     public List<Item> getItems() {
         return itemRepository.findAll();
     }
 
-    @PostMapping("/insert")
+    @GetMapping("/{id}")
+    public ResponseEntity<Item> getItemById(@PathVariable(value = "id") Long itemId) throws IOException {
+            Item item = itemRepository.findById(itemId)
+                    .orElseThrow(() -> new IOException("Item not found for this id :: " + itemId));
+            return ResponseEntity.ok().body(item);
+    }
+
+    @PostMapping("/image")
     public void uploadImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
         this.bytes = file.getBytes();
     }
 
-    @PostMapping("/item")
+    @PostMapping("/")
     public void createItem(@RequestBody Item item) throws IOException {
         item.setPicByte(this.bytes);
         itemRepository.save(item);
@@ -54,7 +62,7 @@ public class ItemController {
         return item;
     }
 
-    @PutMapping("/")
+    @PutMapping("/{id}")
     public void updateItem(@RequestBody Item item) {
         itemRepository.save(item);
     }
