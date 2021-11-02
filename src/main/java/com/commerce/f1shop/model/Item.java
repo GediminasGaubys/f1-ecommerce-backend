@@ -14,11 +14,11 @@ public class Item {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "racer")
-    private String racer;
+    @Column(name = "racerId")
+    private Long racerId;
 
     @Column(name = "price")
-    private String price;
+    private Double price;
 
     @Column(name = "picByte", length = 1000)
     private byte[] picByte;
@@ -39,19 +39,19 @@ public class Item {
         this.name = name;
     }
 
-    public String getRacer() {
-        return racer;
+    public Long getRacer() {
+        return racerId;
     }
 
-    public void setRacer(String racer) {
-        this.racer = racer;
+    public void setRacer(Long racerId) {
+        this.racerId = racerId;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

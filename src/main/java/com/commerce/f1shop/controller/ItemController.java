@@ -1,9 +1,9 @@
 package com.commerce.f1shop.controller;
 
-import java.awt.print.Book;
 import java.io.IOException;
 import java.util.List;
 
+import com.commerce.f1shop.exeptions.DoesNotExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -39,9 +39,13 @@ public class ItemController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Item> getItemById(@PathVariable(value = "id") Long itemId) throws IOException {
-            Item item = itemRepository.findById(itemId)
-                    .orElseThrow(() -> new IOException("Item not found for this id :: " + itemId));
-            return ResponseEntity.ok().body(item);
+        Item item = itemRepository.findById(itemId).orElseThrow(() -> new DoesNotExistException(itemId));
+        return ResponseEntity.ok().body(item);
+    }
+
+    @GetMapping("/racer/{id}")
+    public List<Item> getItemsByRacerId(@PathVariable Long id){
+        return itemRepository.findByRacerId(id);
     }
 
     @PostMapping("/image")
@@ -58,13 +62,17 @@ public class ItemController {
 
     @DeleteMapping(path = { "/{id}" })
     public Item deleteItem(@PathVariable("id") long id) {
-        Item item = itemRepository.getOne(id);
+        Item item = itemRepository.findById(id).orElseThrow(() -> new DoesNotExistException(id));
         itemRepository.deleteById(id);
         return item;
     }
 
     @PutMapping("/{id}")
-    public void updateItem(@RequestBody Item item) {
-        itemRepository.save(item);
+    public Item updateItem(@PathVariable("id") long id, @RequestBody Item newitem) {
+        Item item = itemRepository.findById(id).orElseThrow(() -> new DoesNotExistException(id));
+        itemRepository.deleteById(id);
+        newitem.setId(id);
+        itemRepository.save(newitem);
+        return newitem;
     }
 }

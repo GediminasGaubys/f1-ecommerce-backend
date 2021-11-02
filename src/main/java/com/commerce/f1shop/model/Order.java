@@ -10,14 +10,14 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "userId")
+    private Long userId;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name = "itemId")
+    private Long itemId;
 
-    @Column(name = "type")
-    private String type;
+    @Column(name = "totalPrice")
+    private Double totalPrice;
 
     public Long getId() {
         return id;
@@ -27,27 +27,27 @@ public class Order {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public String getType() {
-        return type;
+    public Long getItemId() {
+        return itemId;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
     }
 
-    public String getPassword() {
-        return password;
+    public Double getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }
