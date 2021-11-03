@@ -1,6 +1,7 @@
 package com.commerce.f1shop.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "orders")
@@ -13,11 +14,52 @@ public class Order {
     @Column(name = "userId")
     private Long userId;
 
-    @Column(name = "itemId")
-    private Long itemId;
-
     @Column(name = "totalPrice")
     private Double totalPrice;
+
+    @Column(name = "date")
+    private Date date;
+
+    @Column(name = "paymentType")
+    private String paymentType;
+
+    @Column(name = "orderStatus")
+    private String orderStatus;
+
+    @Column(name = "shipmentStatus")
+    private String shipmentStatus;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public String getShipmentStatus() {
+        return shipmentStatus;
+    }
+
+    public void setShipmentStatus(String shipmentStatus) {
+        this.shipmentStatus = shipmentStatus;
+    }
 
     public Long getId() {
         return id;
@@ -33,14 +75,6 @@ public class Order {
 
     public void setUserId(Long userId) {
         this.userId = userId;
-    }
-
-    public Long getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
     }
 
     public Double getTotalPrice() {

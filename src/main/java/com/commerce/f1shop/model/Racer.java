@@ -19,6 +19,9 @@ public class Racer {
     @Column(name = "team")
     private String team;
 
+    @Column(name = "carNumber")
+    private String carNumber;
+
     @Column(name = "racesWon")
     private Integer racesWon;
 
@@ -36,6 +39,14 @@ public class Racer {
 
     @Column(name = "podiums")
     private Integer podiums;
+
+    public String getCarNumber() {
+        return carNumber;
+    }
+
+    public void setCarNumber(String carNumber) {
+        this.carNumber = carNumber;
+    }
 
     public Long getId() {
         return id;

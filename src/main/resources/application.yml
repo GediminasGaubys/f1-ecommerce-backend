@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:sqlserver://f1ecommerce.database.windows.net:1433;database=ecommercedb;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+    url: jdbc:sqlserver://f1ecommerce.database.windows.net:1433;database=f1ecommercedb;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
     username: f1ecommerce
     password: ecommerceF1
   jpa:

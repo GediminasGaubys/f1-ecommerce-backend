@@ -14,14 +14,55 @@ public class Item {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "description")
+    private String description;
+
     @Column(name = "racerId")
     private Long racerId;
 
     @Column(name = "price")
     private Double price;
 
+    @Column(name = "quantityInStock")
+    private Integer quantityInStock;
+
+    @Column(name = "shippingInformation")
+    private String shippingInformation;
+
     @Column(name = "picByte", length = 1000)
     private byte[] picByte;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Long getRacerId() {
+        return racerId;
+    }
+
+    public void setRacerId(Long racerId) {
+        this.racerId = racerId;
+    }
+
+    public Integer getQuantity() {
+        return quantityInStock;
+    }
+
+    public void setQuantity(Integer quantityInStock) {
+        this.quantityInStock = quantityInStock;
+    }
+
+    public String getShippingInformation() {
+        return shippingInformation;
+    }
+
+    public void setShippingInformation(String shippingInformation) {
+        this.shippingInformation = shippingInformation;
+    }
 
     public Long getId() {
         return id;
@@ -39,13 +80,6 @@ public class Item {
         this.name = name;
     }
 
-    public Long getRacer() {
-        return racerId;
-    }
-
-    public void setRacer(Long racerId) {
-        this.racerId = racerId;
-    }
 
     public Double getPrice() {
         return price;
