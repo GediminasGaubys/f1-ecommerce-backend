@@ -1,5 +1,6 @@
 package com.commerce.f1shop.controller;
 import com.commerce.f1shop.db.UserRepository;
+import com.commerce.f1shop.exeptions.DoesNotExistException;
 import com.commerce.f1shop.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,9 +32,8 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable(value = "id") Long userId) throws IOException {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new IOException("Item not found for this id :: " + userId));
+    public ResponseEntity<User> getUserById(@PathVariable(value = "id") Long id) throws IOException {
+        User user = userRepository.findById(id).orElseThrow(() -> new DoesNotExistException(id));
         return ResponseEntity.ok().body(user);
     }
 
@@ -44,7 +44,7 @@ public class UserController {
 
     @DeleteMapping(path = { "/{id}" })
     public User deleteUser(@PathVariable("id") long id) {
-        User user = userRepository.getOne(id);
+        User user = userRepository.findById(id).orElseThrow(() -> new DoesNotExistException(id));
         userRepository.deleteById(id);
         return user;
     }
