@@ -22,7 +22,6 @@ import com.commerce.f1shop.db.ItemRepository;
 import com.commerce.f1shop.model.Item;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:4200")
 @CrossOrigin(origins = "*", maxAge = 3600, allowedHeaders = "*")
 @RequestMapping(path = "items")
 public class ItemController {
@@ -67,12 +66,17 @@ public class ItemController {
         return item;
     }
 
-    @PutMapping("/{id}")
-    public Item updateItem(@PathVariable("id") long id, @RequestBody Item newitem) {
-        Item item = itemRepository.findById(id).orElseThrow(() -> new DoesNotExistException(id));
-        itemRepository.deleteById(id);
-        newitem.setId(id);
-        itemRepository.save(newitem);
-        return newitem;
+//    @PutMapping("/{id}")
+//    public Item updateItem(@PathVariable("id") long id, @RequestBody Item newitem) {
+//        Item item = itemRepository.findById(id).orElseThrow(() -> new DoesNotExistException(id));
+//        itemRepository.deleteById(id);
+//        newitem.setId(id);
+//        itemRepository.save(newitem);
+//        return newitem;
+//    }
+
+    @PutMapping("/")
+    public void updateItem(@RequestBody Item item) {
+        itemRepository.save(item);
     }
 }

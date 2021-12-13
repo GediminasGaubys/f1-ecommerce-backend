@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.awt.print.Book;
 import java.io.IOException;
 import java.util.List;
 
@@ -49,12 +50,17 @@ public class RacerController {
         return racer;
     }
 
-    @PutMapping("/{id}")
-    public Racer updateRacer(@PathVariable("id") long id, @RequestBody Racer newRacer) {
-        Racer racer = racerRepository.findById(id).orElseThrow(() -> new DoesNotExistException(id));
-        racerRepository.deleteById(id);
-        newRacer.setId(id);
-        racerRepository.save(newRacer);
-        return newRacer;
+//    @PutMapping("/{id}")
+//    public Racer updateRacer(@PathVariable("id") long id, @RequestBody Racer newRacer) {
+//        Racer racer = racerRepository.findById(id).orElseThrow(() -> new DoesNotExistException(id));
+//        racerRepository.deleteById(id);
+//        newRacer.setId(id);
+//        racerRepository.save(newRacer);
+//        return newRacer;
+//    }
+
+    @PutMapping("/")
+    public void updateRacer(@RequestBody Racer racer) {
+        racerRepository.save(racer);
     }
 }
